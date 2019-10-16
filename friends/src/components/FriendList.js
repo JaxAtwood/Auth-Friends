@@ -2,6 +2,9 @@ import React from "react";
 import axiosWithAuth  from "../utils/axiosWithAuth";
 import FriendForm from "./FriendForm";
 import LogOut from "./LogOut";
+import { Button } from "../styles/StyleButton";
+import { Card, CardButtons } from "../styles/StyleCard";
+
 //spinner??
 //moment??
 
@@ -40,21 +43,26 @@ export default function FriendList() {
 
     return (
         <div>
-            <p> FriendList </p>
             <FriendForm editingFriend={editingFriend} setFriends={setFriends} setEditingFriend={setEditingFriend}/>
+            <h1> Friends </h1>
+
             {friends.map(friendObj => {
                 return (
-                    <div key={friendObj.id}>
+                    
+                    <Card key={friendObj.id}>
+
                         {" "}
-                        <p>{friendObj.name}</p>{" "}
-                        <p>{friendObj.age}</p>{" "}
+                        <p>{friendObj.name} , {friendObj.age}</p>{" "}
+                        {/* <p>{friendObj.age}</p>{" "} */}
                         <p>{friendObj.email}</p>{" "}
-                        <button onClick={() => editFriend(friendObj)} >EDIT</button>{" "}
-                        {/* <button onClick={() => deleteFriend(friendObj.id)} >DELETE</button>{" "} */}
-                        <button onClick={() =>
-                            window.confirm("Are You Sure You Wanna Delete?") &&
-                            deleteFriend(friendObj.id) } >DELETE</button>{" "}
-                    </div>
+                        <CardButtons>
+                            <Button onClick={() => editFriend(friendObj)} >EDIT</Button>{" "}
+                            {/* <button onClick={() => deleteFriend(friendObj.id)} >DELETE</button>{" "} */}
+                            <Button onClick={() =>
+                                window.confirm("Are You Sure You Wanna Delete?") &&
+                                deleteFriend(friendObj.id) } >DELETE</Button>{" "}
+                        </CardButtons>
+                    </Card>
                     );
             })}
             <LogOut />

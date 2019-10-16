@@ -1,25 +1,21 @@
 .App {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
   text-align: center;
   border: magenta solid 3px;
   padding: 30px;
   background: DarkCyan;
   margin: 50px;
+  border-radius: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  /* min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white; */
-  /* border: magenta dotted 3px; */
-}
 
 .header {
   border: solid turquoise 2px;
   background: magenta;
   color: PaleTurquoise;
+  margin-bottom: 20px;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }

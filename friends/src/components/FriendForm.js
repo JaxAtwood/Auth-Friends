@@ -1,7 +1,7 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
-
-
+import { Button } from "../styles/StyleButton";
+import { NewBuddy, CardButtons } from "../styles/StyleCard";
 
 export default function FriendForm(props) {
 
@@ -57,7 +57,7 @@ export default function FriendForm(props) {
         }
 
         return (
-            <div className="addNewBud">
+            <NewBuddy className="addNewBud">
                 <p>Add New Buddy</p>
                 <form onSubmit={submitHandler}>
                     <input 
@@ -84,9 +84,11 @@ export default function FriendForm(props) {
                         onChange={handleChanges}
                         value={form.email}
                     />
-                    <button type="submit">{props.editingFriend ? "Submit Edit" : "Add Friend"}</button>
-                    <button onClick={closeEdit} >Cancel</button>
+                    <CardButtons>
+                    <Button type="submit">{props.editingFriend ? "SUBMIT EDIT" : "ADD FRIEND"}</Button>
+                    <Button onClick={closeEdit} >CANCEL</Button>
+                    </CardButtons>
                 </form>
-            </div>
+            </NewBuddy>
         )
     }

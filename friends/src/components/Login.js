@@ -1,5 +1,6 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { Button } from "../styles/StyleButton";
 
 const Login = props => {
 
@@ -46,7 +47,7 @@ const Login = props => {
                     onChange={handleChanges}
                     value={form.password}
                 />
-                <button type="submit">Log In</button>
+                <Button type="submit">LOG IN</Button>
             </form>
         </div>
     )

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../styles/StyleButton";
 
 export default function LogOut() {
 
@@ -9,6 +10,6 @@ export default function LogOut() {
 
 return (
     <div>
-        <button onClick={logout} >LOG OUT</button>
+        <Button onClick={logout} >LOG OUT</Button>
     </div>
 )};
