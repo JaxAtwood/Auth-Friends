@@ -1,61 +1,55 @@
 import React from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import {Redirect } from "react-router-dom";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
-class Login extends React.Component {
-    state = {
-        credentials: {
-            username: "",
-            password: ""
-        }
-    };
+const Login = props => {
 
-    handleChange = event => {
-        this.setState({
-            credentials: {
-                ...this.state.credentials,
-                [event.target.name]: event.target.value
-            }
-        });
-    };
+    const [form, setForm] = React.useState({ username: "", password: "" }); //React dot notation instead of importing inside {}
+        //props for username and pw => destructuring? as empty strings
 
-    login = event => {
-        event.preventDefault();
-        axiosWithAuth()
-            .post('/api/login', this.state.credentials)
-            .then(res => {
-                localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/protected');
-            })
-            .catch(err => console.log(err.response));
-    };
-
-    render() {
-        if (localStorage.getItem('token')) {
-            return <Redirect to ="protected" />
-        }
-        return (
-            <div>
-                <form onSubmit={this.login}>
-                    <input
-                        type="text"
-                        name="username"
-                        value={this.state.credentials.username}
-                        onChange={this.handleChange}
-                        placeholder="username"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={this.state.credentials.password}
-                        onChange={this.handleChange}
-                        placeholder="password"
-                    />
-                    <button>Log In</button>
-                </form>
-            </div>
-        )
+    const handleChanges = e => {
+        setForm({...form, [e.target.name]: e.target.value}); //spreading form then targeting the event to act on the name & value
+            //name is assigned below (banana), value is what the input is
     }
-};
+
+    const login = e => {
+        e.preventDefault(); //keeps page from refreshing
+        axiosWithAuth()
+            .post("/api/login", form) //per the ReadMe or server.js data 
+            //with a post, needs data- form is our data here bc it has out username and pw
+            .then(res => {
+                console.log("LOGIN", res);
+                localStorage.setItem("token", res.data.payload);
+                props.history.push("/");
+            })
+            .catch(error => {
+                console.log(error.response)
+                alert("Incorrect Log In Information")
+                setForm({ username: "", password: "" }); //resets form back to nothing if it's incorrect
+         });
+    };
+
+
+    return (
+        <div>
+            <form onSubmit={login}>
+                <input //input is a property name from JSX
+                    type="text" //type, placeholder, name, etc are attributes of the property "input"
+                    placeholder="username"
+                    name="username" //must match the name of the property inside of our state
+                    onChange={handleChanges}
+                    value={form.username}
+                />
+                <input 
+                    type="password"
+                    placeholder="password"
+                    name="password" //must match the name of the property inside of our state
+                    onChange={handleChanges}
+                    value={form.password}
+                />
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    )
+}
 
 export default Login;
