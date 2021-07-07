@@ -1,0 +1,21 @@
+.App {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  text-align: center;
+  border: magenta solid 3px;
+  padding: 30px;
+  background: DarkCyan;
+  margin: 50px;
+  border-radius: 20px;
+}
+
+
+.header {
+  border: solid turquoise 2px;
+  background: magenta;
+  color: PaleTurquoise;
+  margin-bottom: 20px;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
